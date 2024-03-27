@@ -16,7 +16,7 @@ axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard')
 
         meanings.forEach(meaning => {
             if (meaning !== undefined) {
-                console.log("meaning-----", meaning)
+
                 const listItem = document.createElement('p');
                 listItem.textContent = meaning.partOfSpeech;
                 meaningsList.appendChild(listItem);
@@ -47,23 +47,9 @@ axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard')
         contentDiv.appendChild(h1);
 
         contentDiv.appendChild(pronumciation);
-        //contentDiv.appendChild(meaningsList);
+
         contentDiv.appendChild(url);
 
-        //console.log(entry.word)
-        //console.log(entry.phonetics[1].text)
-        //for (let i = 0; i < entry.meanings.length; i++) {
-        //console.log(entry.meanings[i].partOfSpeech)
-        //for (let j = 0; j < entry.meanings[i].definitions.length; j++) {
-        //    console.log(entry.meanings[i].definitions[j].definition)
-        //}
-        // if (entry.meanings[i].synonyms[0] !== undefined) {
-        //     console.log("synonym", entry.meanings[i].synonyms[0])
-        // }
-
-
-        //}
-        //console.log(entry.sourceUrls[0])
     })
     .catch(function (error) {
         console.error('Error:', error);
