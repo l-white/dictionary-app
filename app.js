@@ -10,7 +10,12 @@ axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard')
 
         const pronumciation = document.createElement('p');
         pronumciation.textContent = entry.phonetics[1].text;
+        // content at top
+        const contentDiv = document.getElementById('content');
+        contentDiv.appendChild(h1);
+        contentDiv.appendChild(pronumciation);
 
+        // parts of speech, definitions
         const meanings = entry.meanings;
         const meaningsList = document.getElementById('meaningsList');
 
@@ -24,11 +29,13 @@ axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard')
                 const meaningText = document.createElement('p');
                 meaningText.textContent = "Meaning";
                 meaningsList.appendChild(meaningText);
+                const definitionList = document.createElement('ul');
 
                 for (let k = 0; k < meaning.definitions.length; k++) {
                     const definition = document.createElement('li');
                     definition.textContent = meaning.definitions[k].definition;
-                    meaningsList.appendChild(definition);
+                    definitionList.appendChild(definition);
+                    meaningsList.appendChild(definitionList);
                 }
 
                 if (meaning.synonyms[0] !== undefined) {
@@ -39,16 +46,13 @@ axios.get('https://api.dictionaryapi.dev/api/v2/entries/en/keyboard')
             }
         })
 
+
+
+        // url at end
         const url = document.createElement('p');
         url.textContent = entry.sourceUrls[0];
-
-        const contentDiv = document.getElementById('content');
-
-        contentDiv.appendChild(h1);
-
-        contentDiv.appendChild(pronumciation);
-
-        contentDiv.appendChild(url);
+        const endDiv = document.getElementById('urlDiv');
+        endDiv.appendChild(url);
 
     })
     .catch(function (error) {
